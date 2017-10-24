@@ -56,12 +56,12 @@ $("#frequency-train").val("");
   	var trainFrequency = childSnapshot.val().frequency
 
 
-  var tFrequency = 5;
+  var tFrequency = 0;
 
     
-    var firstTime = "4:00";
+    var firstTime = 0;
 
-    var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
+    var firstTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
     console.log(firstTimeConverted);
 
   
@@ -73,22 +73,22 @@ $("#frequency-train").val("");
     console.log("DIFFERENCE IN TIME: " + diffTime);
 
     
-    var tRemainder = diffTime % tFrequency;
+    var tRemainder = diffTime % trainFrequency;
     console.log(tRemainder);
 
    
-    var minutesAway = tFrequency - tRemainder;
+    var minutesAway = trainFrequency - tRemainder;
 
-    if (minutesAway == '5'|| "0") {
-      minutesAway == "Now";
+    if (minutesAway == "0") {
+      minutesAway == "Arriving Now";
     } else {
-      minutesAway == tFrequency - tRemainder;
+      minutesAway == trainFrequency - tRemainder;
     };
     
 
     
     var nextTime = moment().add(minutesAway, "minutes");
-   nextArrival = moment(nextTime).format("hh:mm");
+   nextArrival = moment(nextTime).format("HH:mm");
 
 $("#train-table > tbody").append("<tr><td>" + trainLine + "</td><td>" + trainDestination + "</td><td>" +
   trainFrequency + "</td><td>" + nextArrival + "</td><td>" + minutesAway + "</td></tr>");
